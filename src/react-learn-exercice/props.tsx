@@ -1,4 +1,4 @@
-import { getImageUrl } from "./utils.js";
+import { getImageUrl } from "./utils";
 
 interface Attributs {
   imageTag: {
@@ -9,67 +9,89 @@ interface Attributs {
   };
   personDesc: {
     profession: string;
+    awards: string[];
+    discovers: string;
   };
 }
 
-function ScientistProfile() {
+export function ScientistProfile({ imageTag, personDesc }: Attributs) {
   return (
     <section className="profile">
       <h2>Maria Skłodowska-Curie</h2>
       <img
         className="avatar"
-        src={getImageUrl("szV5sdG")}
-        alt="Maria Skłodowska-Curie"
-        width={70}
-        height={70}
+        src={getImageUrl(imageTag.imageUrl)}
+        alt={imageTag.alt_text}
+        width={imageTag.width}
+        height={imageTag.height}
       />
       <ul>
         <li>
           <b>Profession: </b>
-          physicist and chemist
+          {personDesc.profession}
         </li>
         <li>
-          <b>Awards: 4 </b>
-          (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal,
-          Matteucci Medal)
+          <b>Awards: {personDesc.awards.length} </b>(
+          {personDesc.awards.join(", ")})
         </li>
         <li>
           <b>Discovered: </b>
-          polonium (element)
+          {personDesc.discovers}
         </li>
       </ul>
     </section>
   );
 }
 
-export default function Gallery() {
+export default function GalleryEx() {
+  const MariaCurie = {
+    imageTag: {
+      imageUrl: getImageUrl("szV5sdG"),
+      alt_text: "Maria Skłodowska-Curie",
+      width: 70,
+      height: 70,
+    },
+    personDesc: {
+      profession: "physicist and chemist",
+      awards: [
+        "Nobel prize in physics",
+        "Nobel Prize in chemistry",
+        "Davy Medal",
+        "Matteucci Medam",
+      ],
+      discovers: "polonium (element)",
+    },
+  };
+  const KatsukoS = {
+    imageTag: {
+      imageUrl: getImageUrl("YfeOqp2"),
+      alt_text: "Katsuko Saruhashi",
+      width: 70,
+      height: 70,
+    },
+    personDesc: {
+      profession: "geochemist",
+      awards: [
+        "Nobel prize in physics",
+        "Nobel Prize in chemistry",
+        "Davy Medal",
+        "Matteucci Medam",
+      ],
+      discovers: "polonium (element)",
+    },
+  };
+
   return (
     <div>
       <h1>Notable Scientists</h1>
-
-      <section className="profile">
-        <h2>Katsuko Saruhashi</h2>
-        <img
-          className="avatar"
-          src={getImageUrl("YfeOqp2")}
-          alt="Katsuko Saruhashi"
-          width={70}
-          height={70}
-        />
-        <ul>
-          <li>
-            <b>Profession: </b>
-            geochemist
-          </li>
-          <li>
-            <b>Awards: 2 </b>
-            (Miyake Prize for geochemistry, Tanaka Prize)
-          </li>
-          <li>
-            <b>Discovered: </b>a method for measuring carbon dioxide in seawater
-          </li>
-        </ul>
-      </section>
+      <ScientistProfile
+        imageTag={MariaCurie.imageTag}
+        personDesc={MariaCurie.personDesc}
+      />
+      <ScientistProfile
+        imageTag={KatsukoS.imageTag}
+        personDesc={KatsukoS.personDesc}
+      />
     </div>
   );
 }
