@@ -10,7 +10,7 @@ export function Profile() {
         alt="Katherine Johnson"
       />
       <Avatar
-        person={{ name: "Lin Lanying", imageId: "1bzer23" }} //passing props to Avatar component
+        person={{ name: "Lin Lanying 45", imageId: "1bzer23" }} //passing props to Avatar component
         size={100}
       />
 
